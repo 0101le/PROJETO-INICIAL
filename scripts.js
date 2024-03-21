@@ -28,8 +28,14 @@ function alertar (event){
  // var resultado = numero % / 2;
   //if(resultado == 0){
    // alert("este numero é par!");
+
+  const url = `https://viacep.com.br/ws/${cep.value}/json`;
   
+  fetch(url)
+  .then(resposta=>resposta.json())
+  .then(dados=>alert(dados.Cep))
+
   Saida.innerText = "nome: " + nome.value +
-  "\n email: " + email.value + "\nEndereço: " + Telefone.value
+  "\nEmail: " + Email.value + "\nEndereço: " + Endereço.value + "\nTelefone: " + Telefone.value + "\nCep: " + Cep.value + "\ncomplemento: " + complemento.value + "\nBairro: " + Bairro.value + "\nEstado: " + Estado.value;
 
 }
