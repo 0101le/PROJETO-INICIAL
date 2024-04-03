@@ -4,17 +4,17 @@ var nome = document.getElementById("nome");
 
 var email = document.getElementById("email");
 
-var Endereço= document.getElementById("Endereço");
+var endereço= document.getElementById("endereço");
 
-var Telefone = document.getElementById("Telefone");
+var telefone = document.getElementById("telefone");
 
-var Cep= document.getElementById("Cep");
+var cep= document.getElementById("cep");
 
-var Complemento = document.getElementById("complemento");
+var complemento = document.getElementById("complemento");
 
-var Bairro = document.getElementById("Bairro");
+var bairro = document.getElementById("bairro");
 
-var Estado = document.getElementById("Estado");
+var estado = document.getElementById("estado");
 
 var saída = document.getElementById("saída de dados");
 
@@ -32,10 +32,28 @@ function alertar (event){
   const url = `https://viacep.com.br/ws/${cep.value}/json`;
   
   fetch(url)
-  .then(resposta=>resposta.json())
-  .then(dados=>alert(dados.Cep))
+  .then(function(resposta){
+    return resposta.json();
+  })
 
-  Saida.innerText = "nome: " + nome.value +
-  "\nEmail: " + Email.value + "\nEndereço: " + Endereço.value + "\nTelefone: " + Telefone.value + "\nCep: " + Cep.value + "\ncomplemento: " + complemento.value + "\nBairro: " + Bairro.value + "\nEstado: " + Estado.value;
+   .then(
+    function(dadosDoEndereço){
+      logradouro.value = dadosDoEndereco.logradouro;
+      bairro.value = dadosDoEndereco.bairro;
+      cidade.value = dadosDoEndereco.localidade;
+      estado.value = dadosDoEndereco.uf;
+      complemento.value = dadosDoEndereco.complemento;
+
+
+    }
+   )
+   .catch(function (e){
+    alert(e.message());
+
+   });
+  
+
+  saida.innerText = "nome: " + nome.value +
+  "\nemail: " + email.value + "\nendereço: " + endereço.value + "\ntelefone: " + telefone.value + "\ncep: " + cep.value + "\ncomplemento: " + complemento.value + "\nbairro: " + bairro.value + "\nestado: " + estado.value;
 
 }
